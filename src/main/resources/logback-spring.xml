@@ -17,6 +17,31 @@
               value="[%d{yyyy-MM-dd HH:mm:ss}:%-3relative]  %clr(%-5level) %clr(${PID:-}){magenta} %clr(---){faint} %clr([%15.15thread]){faint} %clr(%-40.40logger{36}){cyan} %clr(:){faint} %msg%n"/>
 
 
+    <!-- 필터 사용 예제 -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${LOGS_ABSOLUTE_PATH}/error.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <!-- Rolling 정책 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
+            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/error.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 kb, mb, gb -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
     <!-- 콘솔(STDOUT) -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -35,9 +60,9 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
             <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- keep 30 days' worth of history capped at 3GB total size -->
-            <maxHistory>30</maxHistory>
-            <totalSizeCap>3GB</totalSizeCap>
+            <!-- keep 7 days' worth of history capped at 1GB total size -->
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
     </appender>
 
@@ -45,11 +70,13 @@
     <root level="info">
         <!--     참조할 appender 설정 - STDOUT -->
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ERROR" />
     </root>
 
     <!-- log 레벨 설정 (org.springframework.web=debug)-->
-    <logger name="org.springframework.web" level="debug">
-        <appender-ref ref="FILE" />
-    </logger>
+<!--    <logger name="org.springframework.web" level="debug">-->
+<!--        <appender-ref ref="FILE" />-->
+<!--    </logger>-->
 
 </configuration>
