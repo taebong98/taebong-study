@@ -1,6 +1,9 @@
 # taebong-study
 이것저것 공부하고 테스트해보기
 
+<details>
+<summary>Git Convention</summary>
+<div markdown="1">
 
 ## Git Convention
 ### 1. 커밋 유형 지정
@@ -33,6 +36,11 @@
 ### 5. 자신의 코드가 직관적으로 바로 파악할 수 있다고 생각하지 말자
 
 ### 6. 여러가지 항목이 있다면 글머리 기호를 통해 가독성 높이기
+
+</div>
+</details>
+
+
 
 
 ## H2 Database
