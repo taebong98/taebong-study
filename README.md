@@ -33,3 +33,13 @@
 ### 5. 자신의 코드가 직관적으로 바로 파악할 수 있다고 생각하지 말자
 
 ### 6. 여러가지 항목이 있다면 글머리 기호를 통해 가독성 높이기
+
+
+## H2 Database
+### H2 데이터베이스 설치
+- https://www.h2database.com/
+- 권한 주기: chmod 755 h2.sh
+- 데이터베이스 파일 생성
+  - jdbc:h2:~/testDB
+  - ~/testDB.mv.db
+  - jdbc:h2:tcp://localhost/~/testDB 로 접속가능
