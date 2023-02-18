@@ -57,3 +57,4 @@
 - appender: logger를 어디에 출력할지 설정한다. 콘솔, 파일, DB 등 지정할 수 있다.
 - FILE 뿐만 아니라 SockerAppender나 LogStash 등도 함께 설정해서 사용할 수 있다.
 
+참고링크: https://loosie.tistory.com/829
