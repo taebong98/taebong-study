@@ -43,3 +43,17 @@
   - jdbc:h2:~/h2db/testDB (최초 1번만)
   - ~/testDB.mv.db 파일 생성 확인
   - 이후 jdbc:h2:tcp://localhost/~/h2db/testDB 로 접속가능
+
+## Log
+### 스프링부트에서 Logback 사용하기
+##### 1. 앱 개발시 운영 중 발생하는 문제점을 모니터링하거나 추적하는데 용이하다.
+##### 2. 데이터를 분석해 통계를 낼 수 있다.
+- 스프링 부트에서는 기본적으로 Logback이 설정되어 있다.
+- 로그레벨은 기본적으로 [trace > debug > info > warn > error] 순이며 디폴트 설정이 info로 되어있기 때문에 trace와 debug 로그는 기록되지 않는다.
+
+##### 콘솔 로그 수준을 변경하는 가장 간단한 방법은 application.yml이나 application.properties로 설정해주는 것이다
+##### 하지만 yml 설정은 스프링부트에서만 가능한 추상화된 방식이기 때문에 이를 사용하려면 문서에서 제공하는 xml로 성절하는 방식을 익혀야 할 필요가 있다.
+##### logback-spring.xml 파일을 생성하여 로그를 직접 커스텀 할 수 있다.
+- appender: logger를 어디에 출력할지 설정한다. 콘솔, 파일, DB 등 지정할 수 있다.
+- FILE 뿐만 아니라 SockerAppender나 LogStash 등도 함께 설정해서 사용할 수 있다.
+
