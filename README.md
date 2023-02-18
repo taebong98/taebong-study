@@ -40,6 +40,6 @@
 - https://www.h2database.com/
 - 권한 주기: chmod 755 h2.sh
 - 데이터베이스 파일 생성
-  - jdbc:h2:~/testDB
-  - ~/testDB.mv.db
-  - jdbc:h2:tcp://localhost/~/testDB 로 접속가능
+  - jdbc:h2:~/h2db/testDB (최초 1번만)
+  - ~/testDB.mv.db 파일 생성 확인
+  - 이후 jdbc:h2:tcp://localhost/~/h2db/testDB 로 접속가능
